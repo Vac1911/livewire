@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/alt', function () {
-    return view('alt');
-});
+    return view('landing');
+})->name('landing');
+Route::get('/pricing', function () {
+    return view('pricing');
+})->name('pricing');
+Route::get('/news', function () {
+    return view('news');
+})->name('news');
 
 Auth::routes();
 
