@@ -14,15 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('landing');
-})->name('landing');
-Route::get('/pricing', function () {
-    return view('pricing');
-})->name('pricing');
-Route::get('/news', function () {
-    return view('news');
-})->name('news');
+    return view('welcome');
+});
 
-Auth::routes();
+//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//    return view('dashboard');
+//})->name('dashboard');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::resource('articles', \App\Http\Controllers\ArticleController::class);
+Route::get('/user/profile', [\App\Http\Controllers\UserProfileController::class, 'show'])->name('profile.show');

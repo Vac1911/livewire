@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->foreignId('author_id')->constrained('users');
             $table->string('title');
+            $table->text('cover_photo_url')->nullable();
             $table->text('body');
             $table->timestamps();
         });
