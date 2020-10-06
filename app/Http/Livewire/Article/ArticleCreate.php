@@ -3,30 +3,23 @@
 namespace App\Http\Livewire\Article;
 
 use App\Models\Article;
-use App\Models\ArticleMake;
 use Livewire\Component;
 
 class ArticleCreate extends Component
 {
-    public $vin;
-    public $year;
-    public $make;
-    public $model;
+    public $title;
+    public $body;
 
     public function updated($propName)
     {
         $this->validateOnly($propName, $this->getModelValidation());
-        if($propName == 'make')
-            $this->model = null;
     }
 
     protected function getModelValidation()
     {
         return [
-            'vin' => ['required','min:6', 'unique:App\Models\Article,vin'],
-            'year' => 'required|digits:4',
-            'make' => 'required',
-            'model' => 'required',
+            'title' => ['required','min:6'],
+            'body' => 'required',
         ];
     }
 
@@ -35,9 +28,9 @@ class ArticleCreate extends Component
         $this->validate($this->getModelValidation());
 
         $article = Article::create([
-            'vin' => $this->vin,
-            'year' => $this->year,
-            'article_model_id' => $this->model,
+            'title' => $this->title,
+            'body' => $this->body,
+            'author_id' => \Auth::user()->id
         ]);
 
         return redirect()->to(route('articles.show', $article));
@@ -45,8 +38,6 @@ class ArticleCreate extends Component
 
     public function getOptions() {
         return [
-            'make_options' => ArticleMake::all(),
-            'model_options' => $this->make ? optional(ArticleMake::find($this->make))->article_models : collect([]),
         ];
     }
 

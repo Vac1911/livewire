@@ -4,39 +4,61 @@
 
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;700&display=swap');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .btn {
     @apply font-bold py-2 px-4 rounded;
     cursor: pointer;
 }
 
+.btn-sm {
+  @apply font-bold py-1 px-2 rounded text-xs;
+  cursor: pointer;
+}
+
 .badge {
   display: inline-block;
   padding: .25rem .5rem;
-  font-size: 0.75rem;
   font-weight: 600;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: 0.25rem;
   cursor: pointer;
-  @apply bg-gray-200 text-gray-700;
+  @apply bg-gray-200 text-gray-700 text-xs;
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+  @apply rounded overflow-hidden shadow-lg;
 }
 
 .article-title {
-  font-size: 1.25rem;
+  @apply text-xl;
   font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+}
+
+.article-header {
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  @apply text-2xl;
 }
 
 .article-meta {
-  font-size: 0.75rem;
-  border-left-width: 2px;
-  padding-left: 0.5rem;
-  @apply text-gray-700;
+  font-style: italic;
+  display: flex;
+  justify-content: space-between;
+  @apply text-gray-700 mb-2 text-xs;
 }
 
 .article-text {
-  font-size: 0.75rem;
-  @apply text-gray-700;
+  @apply text-gray-700 text-xs;
 }
 
 .article:hover {
